@@ -1,3 +1,7 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .utils.web3 import fetch_eth_price
+
+def index(request):
+    fetch_eth_price()
+    return render(request, 'core/index.html')
