@@ -23,11 +23,11 @@ def fetch_eth_price():
     latest_eth_price = latest_round_data[1] / 10**8
     latest_eth_timestamp = latest_round_data[2]
 
-    e = EthereumPriceFeed.objects.create(
+    e, created = EthereumPriceFeed.objects.get_or_create(
         roundId = latest_eth_round_id,
-        priceUSD = latest_eth_price,
-        timestamp = latest_eth_timestamp,
+        defaults={
+            'priceUSD': latest_eth_price,
+            'timestamp': latest_eth_timestamp,
+        }
     )
 
-
-# TODO: plot data
